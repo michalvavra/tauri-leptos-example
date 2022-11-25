@@ -3,6 +3,8 @@
 - [Tauri][tauri_web]
 - [Leptos][leptos_repo]
 
+Requires Rust Nightly. See Leptos [`nightly` Note][leptos_nightly_note].
+
 ```sh
 # Install Tauri CLI
 cargo install tauri-cli
@@ -23,4 +25,5 @@ authors and contributors of [gbj/leptos][leptos_repo] GitHub repository,
 
 [tauri_web]: https://tauri.app/
 [leptos_repo]: https://github.com/gbj/leptos
+[leptos_nightly_note]: https://github.com/gbj/leptos#nightly-note
 [leptos_license]: https://github.com/gbj/leptos/blob/e465867b30db8fccce7493f9fc913359246ac4bd/LICENSE
