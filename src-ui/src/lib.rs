@@ -1,7 +1,7 @@
 use leptos::*;
 use serde::{Deserialize, Serialize};
 use serde_wasm_bindgen::{from_value, to_value};
-use wasm_bindgen::{convert::FromWasmAbi, prelude::*};
+use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 extern "C" {
