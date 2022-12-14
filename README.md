@@ -3,18 +3,35 @@
 - [Tauri][tauri_web]
 - [Leptos][leptos_repo]
 
-Requires Rust Nightly. See Leptos [`nightly` Note][leptos_nightly_note].
+See [Prerequisites](#prerequisites) section.
+
+Requires Rust nightly. See Leptos [`nightly` Note][leptos_nightly_note].
 
 ```sh
-# Install Tauri CLI
-cargo install tauri-cli
-
 # Build and develop for desktop
 cargo tauri dev
 
 # Build and release for desktop
 cargo tauri build
+```
 
+## Prerequisites
+
+```sh
+# Tauri CLI
+cargo install --locked tauri-cli
+
+# Rust nightly (required by Leptos)
+rustup toolchain install nightly --allow-downgrade
+
+# WASM target
+rustup target add wasm32-unknown-unknown
+
+# Trunk WASM bundler
+cargo install --locked trunk
+
+# `wasm-bindgen` for Apple M1 chips (required by Trunk)
+cargo install --locked wasm-bindgen-cli
 ```
 
 ## Credits
