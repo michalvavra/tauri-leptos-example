@@ -53,7 +53,7 @@ pub fn SimpleCounter(cx: Scope, name: String) -> Element {
     let message = create_local_resource(cx, move || name.to_owned(), |name| greet(name));
     let tauri_event_listener = create_memo(cx, move |_| {
         tauri_listen("custom-event", move |e| {
-            log::debug!("Recieved event {:#?}", e);
+            log::debug!("Received event {:#?}", e);
 
             let tauri_event: TauriEvent = from_value(e).unwrap();
             set_event_msg(tauri_event.payload.message);
