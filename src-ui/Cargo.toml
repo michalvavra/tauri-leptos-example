@@ -11,12 +11,13 @@ console_log = "0.2"
 log = "0.4"
 console_error_panic_hook = "0.1"
 
-serde-wasm-bindgen = "0.4"
-js-sys = "0.3"
 serde = { version = "1", features = ["derive"] }
-wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
-wasm-bindgen-futures = "0.4"
-web-sys = "0.3"
+serde-wasm-bindgen = "0.4"
+
+tauri-sys = { git = "https://github.com/JonasKruckenberg/tauri-sys", rev = "0c864e", features = [
+  "all",
+] }
+futures = "0.3"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3"

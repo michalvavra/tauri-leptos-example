@@ -5,7 +5,7 @@
 
 See [Prerequisites](#prerequisites) section.
 
-Requires Rust nightly. See Leptos [`nightly` Note][leptos_nightly_note].
+Requires Rust nightly. See Leptos [`nightly` note][leptos_nightly_note].
 
 ```sh
 # Build and develop for desktop
@@ -32,6 +32,9 @@ cargo install --locked trunk
 
 # `wasm-bindgen` for Apple M1 chips (required by Trunk)
 cargo install --locked wasm-bindgen-cli
+
+# `esbuild` as dependency of `tauri-sys` crate (used in UI)
+npm install --global --save-exact esbuild
 ```
 
 ## Credits
