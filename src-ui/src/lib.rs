@@ -57,7 +57,7 @@ async fn listen_on_generic_event(event_writer: WriteSignal<Vec<GenericEventRes>>
 pub fn SimpleCounter(cx: Scope, name: String) -> Element {
     let (value, set_value) = create_signal(cx, 0);
 
-    // Greet event, will clean-up once event is recieved.
+    // Greet event, will clean-up once event is received.
     let (greet_event_msg, set_greet_event_msg) =
         create_signal(cx, "No `greet-event` from Tauri.".to_string());
 
@@ -66,7 +66,7 @@ pub fn SimpleCounter(cx: Scope, name: String) -> Element {
         set_greet_event_msg(
             greet_event_resource
                 .read()
-                .unwrap_or("Waiting for `greet-event` from Tauri".to_string()),
+                .unwrap_or("Waiting for `greet-event` from Tauri.".to_string()),
         );
     });
     create_effect(cx, move |_| greet_event_msg_memo);
