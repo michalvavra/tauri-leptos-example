@@ -74,17 +74,13 @@ pub fn SimpleCounter(cx: Scope, name: String) -> Element {
     // Generic event, listening constantly.
     let (event_counter, set_event_counter) = create_signal(cx, 1u16);
     let (event_vec, set_event_vec) = create_signal::<Vec<GenericEventRes>>(cx, vec![]);
-    let emit_event_action = create_action(cx, |num: &u16| emit_generic_event(num.clone()));
-    create_local_resource(
-        cx,
-        move || set_event_vec,
-        |setter| listen_on_generic_event(setter),
-    );
+    let emit_event_action = create_action(cx, |num: &u16| emit_generic_event(*num));
+    create_local_resource(cx, move || set_event_vec, listen_on_generic_event);
 
     // Greet command response.
     // `greet` commands emits `greet-event`. It has to be called after `listen_on_greet_event`.
     // (In order to make sure the once event has been hooked up.)
-    let msg = create_local_resource(cx, move || name.to_owned(), |name| greet(name));
+    let msg = create_local_resource(cx, move || name.to_owned(), greet);
 
     view! { cx,
         <div>
