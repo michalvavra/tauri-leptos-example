@@ -54,7 +54,7 @@ async fn listen_on_generic_event(event_writer: WriteSignal<Vec<GenericEventRes>>
 }
 
 #[component]
-pub fn SimpleCounter(cx: Scope, name: String) -> Element {
+pub fn SimpleCounter(cx: Scope, name: String) -> impl IntoView {
     let (value, set_value) = create_signal(cx, 0);
 
     // Greet event, will clean-up once event is received.
@@ -98,14 +98,12 @@ pub fn SimpleCounter(cx: Scope, name: String) -> Element {
             }>"Emit generic event"</button>
 
             <ul>
-                <For each=event_vec key=|e| e.num>
-                    {|cx: Scope, e: &GenericEventRes| {
-                        view! {
-                            cx,
-                            <li>{e.message.clone()}</li>
-                        }
-                    }}
-                </For>
+                <For each=event_vec key=|e| e.num view=move |e: GenericEventRes| {
+                    view! {
+                        cx,
+                        <li>{e.message.clone()}</li>
+                    }
+                } />
             </ul>
         </div>
     }
