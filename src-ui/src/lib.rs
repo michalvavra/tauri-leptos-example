@@ -98,14 +98,12 @@ pub fn SimpleCounter(cx: Scope, name: String) -> impl IntoView {
             }>"Emit generic event"</button>
 
             <ul>
-                <For each=event_vec key=|e| e.num>
-                    {|cx: Scope, e: &GenericEventRes| {
-                        view! {
-                            cx,
-                            <li>{e.message.clone()}</li>
-                        }
-                    }}
-                </For>
+                <For each=event_vec key=|e| e.num view=move |e: GenericEventRes| {
+                    view! {
+                        cx,
+                        <li>{e.message.clone()}</li>
+                    }
+                } />
             </ul>
         </div>
     }
