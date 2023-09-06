@@ -63,9 +63,9 @@ pub fn SimpleCounter(cx: Scope, name: String) -> impl IntoView {
 
     let greet_event_resource = create_local_resource(cx, move || (), |_| listen_on_greet_event());
     let greet_event_msg_memo = create_memo(cx, move |_| {
-        set_greet_event_msg(
+        set_greet_event_msg.set(
             greet_event_resource
-                .read()
+                .read(cx)
                 .unwrap_or("Waiting for `greet-event` from Tauri.".to_string()),
         );
     });
@@ -84,26 +84,28 @@ pub fn SimpleCounter(cx: Scope, name: String) -> impl IntoView {
 
     view! { cx,
         <div>
-            <button on:click=move |_| set_value(0)>"Clear"</button>
+            <button on:click=move |_| set_value.set(0)>"Clear"</button>
             <button on:click=move |_| set_value.update(|value| *value -= 1)>"-1"</button>
-            <span>"Value: " {move || value().to_string()} "!"</span>
+            <span>"Value: " {move || value.get().to_string()} "!"</span>
             <button on:click=move |_| set_value.update(|value| *value += 1)>"+1"</button>
 
-            <p>{msg}</p>
+            <p>{msg.read(cx)}</p>
             <p>{greet_event_msg}</p>
 
             <button on:click=move |_| {
-                emit_event_action.dispatch(event_counter());
-                set_event_counter(event_counter() + 1);
+                emit_event_action.dispatch(event_counter.get());
+                set_event_counter.set(event_counter.get() + 1);
             }>"Emit generic event"</button>
 
             <ul>
-                <For each=event_vec key=|e| e.num view=move |e: GenericEventRes| {
-                    view! {
-                        cx,
-                        <li>{e.message.clone()}</li>
-                    }
-                } />
+                <For each=move || event_vec.get()
+                     key=|e|  e.num
+                     view=move |cx, e: GenericEventRes| {
+                       view! {
+                         cx,
+                         <li>{e.message.clone()}</li>
+                       }
+                     } />
             </ul>
         </div>
     }
