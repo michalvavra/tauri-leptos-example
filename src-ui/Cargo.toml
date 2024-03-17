@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-leptos = { version = "0.4.10", features = ["csr"] }
+leptos = { version = "0.6.9", features = ["csr"] }
 console_log = "1.0.0"
 log = "0.4"
 console_error_panic_hook = "0.1"
