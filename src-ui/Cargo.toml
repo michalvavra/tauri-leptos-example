@@ -13,7 +13,7 @@ console_error_panic_hook = "0.1"
 
 serde = { version = "1", features = ["derive"] }
 
-tauri-sys = { git = "https://github.com/JonasKruckenberg/tauri-sys", rev = "0c864e", features = [
+tauri-sys = { git = "https://github.com/JonasKruckenberg/tauri-sys", rev = "e8ea8c3fec671fd2edea321ddf3283e4e1505ecb", features = [
   "all",
 ] }
 futures = "0.3"
